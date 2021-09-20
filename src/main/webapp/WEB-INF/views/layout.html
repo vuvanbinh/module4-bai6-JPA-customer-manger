@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+</head>
+<body>
+<div  th:fragment="div-1(var1,var2,var3)">
+    <h1 th:text="${var1}"></h1>
+    <p><a th:href="@{${var2}}" th:text="${var3}"></a></p>
+</div>
+
+
+<footer th:fragment="footer"><h3>$$$$$Bình$$$$$</h3></footer>
+</body>
+</html>

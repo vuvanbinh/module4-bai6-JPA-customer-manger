@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomerLis</title>
+</head>
+<body>
+
+<div style="text-align: center">
+    <div th:replace="layout::div-1('Cusotmer List','/customer/create','Add new customer')"></div>
+
+    <div style="size: 17px;color: cyan">
+        <div th:if="${message}">
+            <span th:text="${message}"></span>
+        </div>
+    </div>
+    <table width="99%" border="2px">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Image</th>
+            <th>Audio</th>
+            <th>Detail</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cus,custat :${customers}">
+            <td th:text="${custat.count}"></td>
+            <td th:text="${cus.getName()}"></td>
+            <td th:text="${cus.getAge()}"></td>
+            <td th:text="${cus.getAddress()}"></td>
+            <td><img th:src="@{'/image/'+${cus.getImg()}}" width="50px" height="50px" alt=""></td>
+            <td><audio controls>
+                <source th:src="@{'/audio/' + ${cus.getAudio()}}" type="audio/ogg">
+                <source th:src="@{'/audio/' + ${cus.getAudio()}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio></td>
+            <td><a th:href="@{/customer/{id}/detail(id=${cus.getId()})}"><button>Detail</button></a></td>
+            <td><a th:href="@{/customer/{id}/edit(id=${cus.getId()})}"><button>Edit</button></a></td>
+            <td><a th:href="@{/customer/{id}/delete(id=${cus.getId()})}"><button>Delete</button></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="layout::footer"></footer>
+</body>
+</html>

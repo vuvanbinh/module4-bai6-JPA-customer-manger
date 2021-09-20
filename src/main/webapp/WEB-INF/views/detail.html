@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>customer</title>
+</head>
+<body>
+<div th:replace="layout::div-1('Detail','/customer','Back to cutomer list')"></div>
+<fieldset>
+    <legend>Information</legend>
+    <div>
+      <ul th:text="${customer.getName()}"></ul>
+    </div>
+    <div>
+        <ul th:text="${customer.getAge()}"></ul>
+    </div>
+    <div>
+        <ul th:text="${customer.getAddress()}"></ul>
+    </div>
+    <div>
+        <img th:src="@{'/image/'+${customer.getImg()}}" width="150px" height="150px" alt="">
+    </div>
+    <div>
+        <audio controls>
+            <source th:src="@{'/audio/' + ${customer.getAudio()}}" type="audio/ogg">
+            <source th:src="@{'/audio/' + ${customer.getAudio()}}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    </div>
+</fieldset>
+
+<footer th:replace="layout::footer"></footer>
+</body>
+</html>

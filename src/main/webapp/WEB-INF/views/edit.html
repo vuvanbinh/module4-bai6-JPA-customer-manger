@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+</head>
+<body>
+<div th:replace="layout::div-1('Edit customer','/customer','Back to customer list')"></div>
+
+<fieldset style="width: 50%">
+    <legend>Information</legend>
+    <form th:action="@{/customer/edit}" th:object="${customer}" method="post"  enctype="multipart/form-data" novalidate="novalidate">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}">
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="text" id="age" th:field="*{age}">
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <input type="text" id="address" th:field="*{address}">
+        </div>
+        <div>
+            <input type="hidden" th:field="*{img}">
+            <img th:src="@{'/image/'+*{img}}" width="50px" height="50px" alt="">
+        </div>
+        <div>
+            <input type="hidden" th:field="*{audio}">
+            <label for="newImg">NewImg:</label>
+            <input id="newImg" type="file" name="newImg">
+        </div>
+        <div>
+            <audio controls>
+                <source th:src="@{'/audio/' + *{audio}}" type="audio/ogg">
+                <source th:src="@{'/audio/' + *{audio}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div>
+            <label for="newAudio">NewAudio</label>
+            <input id="newAudio" type="file" name="newAudio">
+        </div>
+        <input type="submit" value="Update">
+    </form>
+
+</fieldset>
+
+<footer th:replace="layout::footer"></footer>
+</body>
+</html>

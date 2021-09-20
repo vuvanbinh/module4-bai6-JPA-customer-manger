@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="text-align: center">
+    <form th:action="@{/customer/delete}" method="post" th:object="${customer}" novalidate="novalidate" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}">
+        </div>
+        <div>
+            <label for="age">Age</label>
+            <input type="text" id="age" th:field="*{age}">
+        </div>
+        <div>
+            <label for="address">Address</label>
+            <input type="text" id="address" th:field="*{address}">
+        </div>
+        <div>
+            <img th:src="@{'/image/'+${customer.getImg()}}" width="150px" height="150px" alt="">
+        </div>
+        <div>
+            <audio controls>
+                <source th:src="@{'/audio/' + ${customer.getAudio()}}" type="audio/ogg">
+                <source th:src="@{'/audio/' + ${customer.getAudio()}}" type="audio/mpeg">
+            </audio>
+        </div>
+        <input type="submit" value="DELETE">
+    </form>
+</div>
+</body>
+</html>
